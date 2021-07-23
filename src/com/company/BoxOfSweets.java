@@ -44,8 +44,13 @@ public class BoxOfSweets implements Box{
         return sum;
     }
 
+    // удаляем самые легкие, пока вес  больше переданного
     @Override
     public void reduceWeight(double minWeight) {
+
+        ArrayList<Sweet> temp = new ArrayList<>();
+        temp.addAll(sweets);
+
         double boxWeight = weight();
         if(boxWeight < minWeight)
             return;
@@ -54,20 +59,61 @@ public class BoxOfSweets implements Box{
             delete(index);
             boxWeight = weight();
         }
+        System.out.println("\n\nПодарок после изменения веса:");
+        double weight = this.weight();
+        double price = this.price();
+        System.out.printf("Общий вес подарка: %.2f%n", weight);
+        System.out.printf("Общая цена подарка: %.2f%n", price);
+        printSweets();
+        sweets = temp;
     }
 
+    // удаляем самые легкие, пока цена больше переданной
     @Override
     public void reducePrice(double minPrice) {
+        ArrayList<Sweet> temp = new ArrayList<>();
+        temp.addAll(sweets);
         double boxPrice = price();
         if(boxPrice < minPrice)
             return;
         while(boxPrice > minPrice){
-            int index = findMinPrice();
+            int index = findMinWeight();
             delete(index);
             boxPrice = price();
         }
+        System.out.println("\n\nПодарок после изменения цены:");
+        double weight = this.weight();
+        double price = this.price();
+        System.out.printf("Общий вес подарка: %.2f%n", weight);
+        System.out.printf("Общая цена подарка: %.2f%n", price);
+        printSweets();
+        sweets = temp;
 
     }
+
+//    // удаляем самые дешевые, пока цена больше переданной
+//    @Override
+//    public void reducePrice(double minPrice) {
+//        ArrayList<Sweet> temp = new ArrayList<>();
+//        for (Sweet sweet : sweets)
+//            temp.add(sweet);
+//        double boxPrice = price();
+//        if(boxPrice < minPrice)
+//            return;
+//        while(boxPrice > minPrice){
+//            int index = findMinPrice();
+//            delete(index);
+//            boxPrice = price();
+//        }
+//        System.out.println("\n\nПодарок после изменения цены:");
+//        double weight = this.weight();
+//        double price = this.price();
+//        System.out.printf("Общий вес подарка: %.2f%n", weight);
+//        System.out.printf("Общая цена подарка: %.2f%n", price);
+//        printSweets();
+//        sweets = temp;
+//
+//    }
 
     private int findMinPrice(){
         int index = 0;

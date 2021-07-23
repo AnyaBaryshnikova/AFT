@@ -28,23 +28,14 @@ public class Main {
         System.out.println("Сладости в подарке: ");
         present.printSweets();
 
-
-        System.out.println("\n\nПодарок после изменения веса:");
         present.reduceWeight(1300);
-        weight = present.weight();
-        price = present.price();
-        System.out.printf("Общий вес подарка: %.2f%n", weight);
-        System.out.printf("Общая цена подарка: %.2f%n", price);
-        present.printSweets();
 
-
-
-        System.out.println("\n\nПодарок после изменения цены:");
         present.reducePrice(800);
-        weight = present.weight();
-        price = present.price();
-        System.out.printf("Общий вес подарка: %.2f%n", weight);
-        System.out.printf("Общая цена подарка: %.2f%n", price);
-        present.printSweets(); }
+
+
+
+
+
+    }
 
 }
